@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
-// import configureStore from "./store/configureStore";
 import StockPage from "./components/StockPage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -48,9 +47,7 @@ function App() {
   if (loading) return null;
   return (
     <BrowserRouter>
-      {/* <Provider store={store}> */}
       <Switch>
-        {/* <Route exact path="/stocks/:stockId" render={(props) => <StockPage {...props}></StockPage>}/> */}
         <ConnectedProtectedRoute
           exact
           path="/"
@@ -60,20 +57,17 @@ function App() {
           exact
           path="/stocks/:stockId"
           render={(props) => <StockPage {...props}></StockPage>}
-          // component={StockPage}
         ></ConnectedProtectedRoute>
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/landing" component={LandingPage} />
-        {/* <ConnectedProtectedRoute path='/user/:userId' render={(props) => <UserPage userId={this.match.params.userId} {...props}></UserPage>}> </ConnectedProtectedRoute> */}
         <ConnectedProtectedRoute
           exact
           path="/user/:userId"
           component={UserPage}
         ></ConnectedProtectedRoute>
       </Switch>
-      {/* </Provider> */}
     </BrowserRouter>
   );
 }
